@@ -1,5 +1,5 @@
 {
-  "name": "spotify-find",
+  "name": "spotify-finder",
   "version": "0.1.0",
   "description": "A Spotify API Client",
   "main": "index.js",

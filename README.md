@@ -1,4 +1,4 @@
-# spotify-find
+# spotify-finder
 
 A Spotify Client for Node.js (non promised)
 
