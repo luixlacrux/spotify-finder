@@ -20,7 +20,7 @@ test('should fail with unknown endpoint', function (t) {
     .get('/foo')
     .reply(404)
 
-  client._request('/foo', 'demi', null, function (err, body) {
+  client._request('/foo', { q: 'Demi', type: 'artist' }, function (err, body) {
     t.ok(err, 'request failed')
     t.end()
   })
@@ -38,8 +38,8 @@ test('should search artist, album, track', function (t) {
                   { albums: 'Demi Lovato' },
                   { tracks: 'Demi Lovato' }])
 
-  client.search('Demi Lovato', {}, function (err, data) {
-    t.error(err, 'should not be an array')
+  client.search('Demi Lovato', 'all', function (err, data) {
+    t.error(err, 'should not be an error')
     t.ok(Array.isArray(data), 'should be an Array')
     t.equals(data[0].artists, 'Demi Lovato', 'should retrive a artist name')
     t.equals(data[1].albums, 'Demi Lovato', 'should retrive a albums name')
