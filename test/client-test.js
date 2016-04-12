@@ -47,3 +47,36 @@ test('should search artist, album, track', function (t) {
     t.end()
   })
 })
+
+test('should get single an album', function (t) {
+  var id_album = '6Kssm2LosQ0WyLukFZkEG5'
+  var client = spotify.createClient({ endpoint: endpoint })
+  t.equals(typeof client.getAlbum, 'function', 'should be a function')
+
+  nock(endpoint)
+  .get('/albums/' + id_album)
+  .reply(200, { id: id_album })
+
+  client.getAlbum(id_album, { tracks: false }, function (err, album) {
+    t.error(err, 'should not be an error')
+    t.equals(typeof album, 'object', 'should be a single element')
+    t.equals(album.id, id_album, 'should retrive a album id')
+    t.end()
+  })
+})
+
+test('should get albums tracks', function (t) {
+  var id_album = '67sdfahy4dertgd232dttt'
+  var client = spotify.createClient({ endpoint: endpoint })
+  t.equals(typeof client.getAlbum, 'function', 'should be a function')
+
+  nock(endpoint)
+  .get('/albums/' + id_album + '/tracks')
+  .reply(200, { items: [] })
+
+  client.getAlbum(id_album, { tracks: true }, function (err, tracks) {
+    t.error(err, 'should not be an error')
+    t.ok(Array.isArray(tracks.items), 'should be an Array')
+    t.end()
+  })
+})
