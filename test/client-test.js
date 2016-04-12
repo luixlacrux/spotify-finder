@@ -65,7 +65,7 @@ test('should get single an album', function (t) {
   })
 })
 
-test('should get albums tracks', function (t) {
+test('should get album tracks', function (t) {
   var id_album = '67sdfahy4dertgd232dttt'
   var client = spotify.createClient({ endpoint: endpoint })
   t.equals(typeof client.getAlbum, 'function', 'should be a function')
@@ -77,6 +77,23 @@ test('should get albums tracks', function (t) {
   client.getAlbum(id_album, { tracks: true }, function (err, tracks) {
     t.error(err, 'should not be an error')
     t.ok(Array.isArray(tracks.items), 'should be an Array')
+    t.end()
+  })
+})
+
+test('should get several albums', function (t) {
+  var ids = '67sdfahy4dertgd232dttt,5asw67sad23q2tsdf232'
+  var client = spotify.createClient({ endpoint: endpoint })
+  t.equals(typeof client.getAlbums, 'function', 'should be a function')
+
+  nock(endpoint)
+    .get('/albums')
+    .query({ ids: ids })
+    .reply(200, { albums: [] })
+
+  client.getAlbums(ids, function (err, data) {
+    t.error(err, 'should not be an error')
+    t.ok(Array.isArray(data.albums), 'should be an Array')
     t.end()
   })
 })
