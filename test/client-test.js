@@ -54,8 +54,8 @@ test('should get single an album', function (t) {
   t.equals(typeof client.getAlbum, 'function', 'should be a function')
 
   nock(endpoint)
-  .get('/albums/' + id_album)
-  .reply(200, { id: id_album })
+    .get('/albums/' + id_album)
+    .reply(200, { id: id_album })
 
   client.getAlbum(id_album, { tracks: false }, function (err, album) {
     t.error(err, 'should not be an error')
@@ -71,8 +71,8 @@ test('should get album tracks', function (t) {
   t.equals(typeof client.getAlbum, 'function', 'should be a function')
 
   nock(endpoint)
-  .get('/albums/' + id_album + '/tracks')
-  .reply(200, { items: [] })
+    .get('/albums/' + id_album + '/tracks')
+    .reply(200, { items: [] })
 
   client.getAlbum(id_album, { tracks: true }, function (err, tracks) {
     t.error(err, 'should not be an error')
@@ -80,7 +80,6 @@ test('should get album tracks', function (t) {
     t.end()
   })
 })
-
 test('should get several albums', function (t) {
   var ids = ['67sdfahy4dertgd232dttt', '5asw67sad23q2tsdf232']
   var client = spotify.createClient({ endpoint: endpoint })
@@ -140,7 +139,7 @@ test('should get an artist top tracks', function (t) {
   t.equals(typeof client.getArtist, 'function', 'should be a function')
 
   nock(endpoint)
-  .get('/artists/' + id_artist + '/top-tracks')
+    .get('/artists/' + id_artist + '/top-tracks')
     .query({ country: 'SE' })
     .reply(200, { tracks: [] })
 
@@ -157,11 +156,28 @@ test('should get an artist related artists', function (t) {
   t.equals(typeof client.getArtist, 'function', 'should be a function')
 
   nock(endpoint)
-  .get('/artists/' + id_artist + '/related-artists')
+    .get('/artists/' + id_artist + '/related-artists')
     .query({ country: 'SE' })
     .reply(200, { artists: [] })
 
   client.getArtist(id_artist, { relatedArtists: true }, null, function (err, data) {
+    t.error(err, 'should not be an error')
+    t.ok(Array.isArray(data.artists), 'should be an Array of artists')
+    t.end()
+  })
+})
+
+test('should get several artist', function (t) {
+  var ids = ['aweWEqewrw253462sda', 'sdar3tadsgdas4d2fy2']
+  var client = spotify.createClient({ endpoint: endpoint })
+  t.equals(typeof client.getArtists, 'function', 'should be a function')
+
+  nock(endpoint)
+    .get('/artists')
+    .query({ ids: ids.toString() })
+    .reply(200, { artists: [] })
+
+  client.getArtists(ids.toString(), function (err, data) {
     t.error(err, 'should not be an error')
     t.ok(Array.isArray(data.artists), 'should be an Array of artists')
     t.end()

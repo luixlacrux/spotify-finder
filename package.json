@@ -1,7 +1,7 @@
 
 {
   "name": "spotify-finder",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A Spotify API Client",
   "main": "index.js",
   "scripts": {
@@ -29,7 +29,7 @@
     "spotify",
     "spotify-api",
     "spotify-client"
-  ]
+  ],
   "homepage": "https://github.com/luixlacrux/spotify-finder#readme",
   "dependencies": {
     "superagent": "^1.8.3"
