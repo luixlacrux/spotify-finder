@@ -82,16 +82,16 @@ test('should get album tracks', function (t) {
 })
 
 test('should get several albums', function (t) {
-  var ids = '67sdfahy4dertgd232dttt,5asw67sad23q2tsdf232'
+  var ids = ['67sdfahy4dertgd232dttt', '5asw67sad23q2tsdf232']
   var client = spotify.createClient({ endpoint: endpoint })
   t.equals(typeof client.getAlbums, 'function', 'should be a function')
 
   nock(endpoint)
     .get('/albums')
-    .query({ ids: ids })
+    .query({ ids: ids.toString() })
     .reply(200, { albums: [] })
 
-  client.getAlbums(ids, function (err, data) {
+  client.getAlbums(ids.toString(), function (err, data) {
     t.error(err, 'should not be an error')
     t.ok(Array.isArray(data.albums), 'should be an Array')
     t.end()

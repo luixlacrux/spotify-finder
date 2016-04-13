@@ -2,6 +2,68 @@
 
 A Spotify Client for Node.js (non promised)
 
+## Usage
+
+``` js
+var spotify = require('spotify-finder')
+var client = spotify.createClient()
+```
+
+Search for all types
+```js
+client.search('Demi', 'all', function (err, data) {
+  // do something with data
+})
+```
+
+Search for type specific
+```js
+client.search('Stone Cold', 'track'  function (err, tracks) {
+  // do something with tracks
+})
+```
+
+Get album by id
+```js
+client.getAlbum('41MnTivkwTO3UUJ8DrqEJJ', { tracks: false }, function (err, album) {
+  // do something with album
+})
+```
+Get several albums by id
+```js
+client.getAlbums(['41MnTivkwTO3UUJ8DrqEJJ', '6UXCm6bOO4gFlDQZV5yL37'], function (err, albums) {
+  // do something with albums
+})
+```
+
+Get artist by id
+```js
+client.getArtist('6S2OmqARrzebs0tKUEyXyp', {}, function (err, artist) {
+  // do something with artist
+})
+```
+
+Get an artist's albums
+```js
+client.getArtist('6S2OmqARrzebs0tKUEyXyp', { albums: true }, null, function (err, albums) {
+  // do something with albums
+})
+```
+
+Get an artist's top tracks
+```js
+client.getArtist('6S2OmqARrzebs0tKUEyXyp', { topTracks: true }, null, function (err, tracks) {
+  // do something with tracks 
+})
+```
+
+Get an artist's related artists
+```js
+client.getArtist('6S2OmqARrzebs0tKUEyXyp', { relatedArtists: true }, null, function (err, artists) {
+   //do something with artists
+})
+```
+
 ## License MIT
 
 Copyright (c) 2016 - Luis Lacruz
