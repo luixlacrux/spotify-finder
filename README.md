@@ -1,7 +1,7 @@
 # spotify-finder
 
 A Spotify Client for Node.js (non promised)
-
+It allows to use some [Spotify Web API](https://developer.spotify.com/web-api/) endpoints
 ## Usage
 
 ``` js
@@ -29,6 +29,13 @@ client.getAlbum('41MnTivkwTO3UUJ8DrqEJJ', { tracks: false }, function (err, albu
   // do something with album
 })
 ```
+Get an album's tracks
+```js
+client.getAlbum('41MnTivkwTO3UUJ8DrqEJJ', { tracks: true }, function (err, tracks) {
+  // do something with tracks
+})
+```
+
 Get several albums by id
 ```js
 client.getAlbums(['41MnTivkwTO3UUJ8DrqEJJ', '6UXCm6bOO4gFlDQZV5yL37'], function (err, albums) {
