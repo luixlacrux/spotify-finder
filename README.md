@@ -2,6 +2,11 @@
 
 A Spotify Client for Node.js (non promised)
 It allows to use some [Spotify Web API](https://developer.spotify.com/web-api/) endpoints
+
+## Install
+```
+$ npm install spotify-finder
+```
 ## Usage
 
 ``` js
