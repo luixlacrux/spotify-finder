@@ -183,3 +183,36 @@ test('should get several artist', function (t) {
     t.end()
   })
 })
+
+test('should get an track', function (t) {
+  var id_track = 'eGsygTp906u18L0Oimnem'
+  var client = spotify.createClient({ endpoint: endpoint })
+  t.equals(typeof client.getTrack, 'function', 'should be an function')
+
+  nock(endpoint)
+    .get('/tracks/' + id_track)
+    .reply(200, { id: id_track })
+
+  client.getTrack(id_track, function (err, track) {
+    t.error(err, 'should not be an error')
+    t.equals(track.id, id_track, 'should retrive a track id')
+    t.end()
+  })
+})
+
+test('should get several tracks', function (t) {
+  var ids = ['0eGsygTp906u18L0Oimnem', 'dsadeTd465hfdg45hddsd']
+  var client = spotify.createClient({ endpoint: endpoint })
+  t.equals(typeof client.getTracks, 'function', 'should be an function')
+
+  nock(endpoint)
+    .get('/tracks')
+    .query({ ids: ids.toString() })
+    .reply(200, { tracks: [] })
+
+  client.getTracks(ids.toString(), function (err, data) {
+    t.error(err, 'should not be an error')
+    t.ok(Array.isArray(data.tracks), 'should be an Array of tracks')
+    t.end()
+  })
+})

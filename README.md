@@ -76,6 +76,26 @@ client.getArtist('6S2OmqARrzebs0tKUEyXyp', { relatedArtists: true }, null, funct
 })
 ```
 
+Get several artists by id
+```js
+client.getArtists(['15deb326635d69d0505434', '934da7155ec15deb32663'], function (err, artists) {
+  //do something with artists
+})
+```
+
+Get an track by id
+```js
+client.getTrack('934da7155ec15deb32663', function (err, track) {
+  //do something with track
+})
+```
+
+Get several tracks by id
+```js
+client.getTracks(['15deb326635d69d0505s', 'da7155ec15deb326635d69d'], function (err, tracks) {
+  //do something with tracks
+})
+```
 ## License MIT
 
 Copyright (c) 2016 - Luis Lacruz
