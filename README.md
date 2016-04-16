@@ -21,6 +21,11 @@ client.search('Demi', 'all', 10, function (err, data) {
 })
 ```
 Parameter 'Demi' is search, 'all' type of search '10' limit of results.
+##### types alowed:
+* artists
+* albums
+* tracks
+* all
 
 #### Search for type specific
 ```js
@@ -66,7 +71,7 @@ client.getArtist('6S2OmqARrzebs0tKUEyXyp', { albums: true }, null, function (err
 #### Get an artist's top tracks
 ```js
 client.getArtist('6S2OmqARrzebs0tKUEyXyp', { topTracks: true }, null, function (err, tracks) {
-  // do something with tracks 
+  // do something with tracks
 })
 ```
 

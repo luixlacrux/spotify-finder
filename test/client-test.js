@@ -33,12 +33,13 @@ test('should search artist, album, track', function (t) {
   nock(endpoint)
     .get('/search')
     .query({ q: 'Demi Lovato' })
+    .query({ limit: 5 })
     .query({ type: 'artist,album,track' })
     .reply(200, [{ artists: 'Demi Lovato' },
                   { albums: 'Demi Lovato' },
                   { tracks: 'Demi Lovato' }])
 
-  client.search('Demi Lovato', 'all', function (err, data) {
+  client.search('Demi Lovato', 'all', 5, function (err, data) {
     t.error(err, 'should not be an error')
     t.ok(Array.isArray(data), 'should be an Array')
     t.equals(data[0].artists, 'Demi Lovato', 'should retrive a artist name')
