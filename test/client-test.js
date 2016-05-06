@@ -4,6 +4,8 @@ var spotify = require('../')
 var Client = require('../lib/client')
 
 var endpoint = 'https://api.spotify.test'
+// var client_id = 'qweQwee12354edq2312'
+// var client_secret = '35qe4rtyterawefdq324yea'
 
 test('should create a client', function (t) {
   t.ok(spotify.createClient, 'should exist')
@@ -25,6 +27,52 @@ test('should fail with unknown endpoint', function (t) {
     t.end()
   })
 })
+
+/* test('should browse new releases', function (t) {
+  var client = spotify.createClient({
+    endpoint: endpoint,
+    client_id: client_id,
+    client_secret: client_secret
+  })
+  t.equals(typeof client.browse, 'function', 'should be an function')
+
+  nock(endpoint)
+    .get('/browse/new-releases')
+    .reply(200, { albums: [] })
+
+  client.browse({ newReleases: true }, function (err, albums) {
+    t.error(err, 'should not be an error')
+    t.ok(Array.isArray(albums), 'should be an array of albums')
+    t.end()
+  })
+}) */
+
+/* test('should return an access token', function (t) {
+  var client = spotify.createClient({
+    endpoint: endpoint,
+    client_id: client_id,
+    client_secret: client_secret
+  })
+  t.equals(typeof client.getToken, 'function', 'should be an function')
+
+  nock(endpoint, {
+    reqheaders: {
+      'authorization': 'Basic Auth'
+    }
+  })
+    .post('/api/token', {
+      grant_type: 'client_credentials'
+    })
+    .reply(200, {
+      token: 'SADfasd2143ADSadeeEWr'
+    })
+
+  client.getToken(function (err, token) {
+    t.error(err, 'should not be an error')
+    // t.equals(data.token, 'SADfasd2143ADSadeeEWr', 'should be an access token')
+    t.end()
+  })
+}) */
 
 test('should search artist, album, track', function (t) {
   var client = spotify.createClient({ endpoint: endpoint })
