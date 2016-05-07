@@ -11,8 +11,13 @@ $ npm install spotify-finder
 
 ``` js
 var spotify = require('spotify-finder')
-var client = spotify.createClient()
+var client = spotify.createClient({
+  client_id: 'YOUR_CLIENT_ID', // if your not have an app in spotify ignore this options
+  client_secret: 'YOUR_CLIENT_SECRET' // if your not have an app in spotify ignore this options
+})
 ```
+Note: if you do not Provide the client credentials, some features that require authentication will not be available.
+To create an application in spotify. [click here](https://developer.spotify.com/my-applications/#!/)
 
 #### Search for all types
 ```js
@@ -31,6 +36,25 @@ Parameter 'Demi' is search, 'all' type of search '10' limit of results.
 ```js
 client.search('Stone Cold', 'track', 2,  function (err, tracks) {
   // do something with tracks
+})
+```
+
+#### Get a List of New Releases
+```js
+client.browse({ newReleases: true }, function (err, albums) {
+  // do something with album's
+})
+```
+#### Get a List of Featured Playlists
+```js
+client.browse({ featuredPlaylists: true }, function (err, playlists) {
+  // do something with playlist's
+})
+```
+#### Get a List of Categories
+```js
+client.browse({ categories: true }, function (err, categories) {
+  // do something with categories
 })
 ```
 
