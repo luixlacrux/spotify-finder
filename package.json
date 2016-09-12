@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "standard",
     "coverage": "istanbul cover tape -- test/*-test.js",
-    "test": "npm run lint && tape test/*-test.js | tap-spec"
+    "test": "npm run lint && tape test/test.js test/*-test.js | tap-spec"
   },
   "repository": {
     "type": "git",
@@ -27,7 +27,7 @@
   "keywords": [
     "spotify",
     "spotify-api",
-    "spotify-client"
+    "spotify-client",
     "es6"
   ],
   "homepage": "https://github.com/luixlacrux/spotify-finder#readme",
