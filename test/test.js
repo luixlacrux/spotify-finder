@@ -15,7 +15,7 @@ test('should create a client', (t) => {
 test('should fail with unknown endpoint', (t) => {
   nock(url).get('/foo')
     .reply(404)
-  client.xhr('/foo', { q: 'Demi' }).catch((err) => {
+  client.fetch('/foo', { q: 'Demi' }).catch((err) => {
     t.ok(err, 'request failed')
     t.end()
   })
