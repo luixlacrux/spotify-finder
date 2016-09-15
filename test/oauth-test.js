@@ -14,7 +14,7 @@ const config = {
 
 const encode = new Buffer(`${config.consumer.key}:${config.consumer.secret}`).toString('base64')
 const headers = { 'Authorization': `Basic ${encode}` }
-const response = { access_token: 'mqARrzebs0tKUEyXyp' }
+const response = { access_token: 'xxx-xxxx-xxx' }
 
 const client = new Spotify(config)
 
