@@ -22,7 +22,7 @@ const clientBad = new Spotify({ auth: 'https://accounts.spotify.test/api/token' 
 
 test('should return an access token', (t) => {
   nock(config.auth, { reqheaders: headers })
-    .post('/')
+    .post('')
     .reply(200, response)
 
   client.getToken().then((token) => {
