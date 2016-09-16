@@ -63,3 +63,24 @@ test('should get categories', (t) => {
     t.end()
   })
 })
+
+/**
+ * Using Callback's
+ */
+
+test('should get new releases and return a callback', (t) => {
+  const opts = { to: 'new-releases', country: 'SE' }
+  const response = { albums: [] }
+
+  nock(config.url, { reqheaders: headers })
+    .get('/browse/new-releases')
+    .query({ country: 'SE' })
+    .reply(200, response)
+
+  client.browse(opts, (err, res) => {
+    t.error(err, 'should not be an error')
+    t.equals(typeof res, 'object', 'should be a object')
+    t.ok(Array.isArray(res.albums), 'should be an Array of albums')
+    t.end()
+  })
+})

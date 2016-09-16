@@ -51,3 +51,23 @@ test('should search only artists', (t) => {
     t.end()
   })
 })
+
+test('should do search and return a callback', (t) => {
+  const querys = {
+    q: 'Demi Lovato',
+    limit: 5
+  }
+
+  const response = { artists: [] }
+
+  nock(url).get('/search')
+    .query(querys)
+    .query({ type: 'artist,album,track' })
+    .reply(200, response)
+
+  client.search(querys, (err, res) => {
+    t.error(err, 'should not be an error')
+    t.equals(typeof res, 'object', '[res] should be a obejct')
+    t.end()
+  })
+})

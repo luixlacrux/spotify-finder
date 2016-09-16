@@ -9,14 +9,13 @@ const client = new Spotify({ url })
 
 test('should get single an artist', (t) => {
   const artistId = '6S2OmqARrzebs0tKUEyXyp'
-  const querys = { country: 'SE' }
   const response = { id: artistId, name: 'Demi Lovato' }
 
   nock(url).get(`/artists/${artistId}`)
-    .query(querys)
+    .query({ country: 'SE' })
     .reply(200, response)
 
-  client.getArtist(artistId, querys).then((artist) => {
+  client.getArtist(artistId).then((artist) => {
     t.equals(typeof artist, 'object', 'should be a single element')
     t.equals(artist.id, artistId, 'should retrive a artist id')
     t.end()
@@ -80,6 +79,43 @@ test('should get several artists', (t) => {
     .reply(200, response)
 
   client.getArtists(ids.toString()).then((artists) => {
+    t.equals(typeof artists, 'object', 'should be a single element')
+    t.ok(Array.isArray(artists.items), 'should be an Array of artists')
+    t.end()
+  })
+})
+
+/**
+ * Using Callback's
+ */
+
+test('should get single an artist and return a callback', (t) => {
+  const artistId = '6S2OmqARrzebs0tKUEyXyp'
+  const querys = { country: 'SE' }
+  const response = { id: artistId, name: 'Demi Lovato' }
+
+  nock(url).get(`/artists/${artistId}`)
+    .query(querys)
+    .reply(200, response)
+
+  client.getArtist(artistId, querys, (err, artist) => {
+    t.error(err, 'should not be an error')
+    t.equals(typeof artist, 'object', 'should be a single element')
+    t.equals(artist.id, artistId, 'should retrive a artist id')
+    t.end()
+  })
+})
+
+test('should get several artists and return al callback', (t) => {
+  const ids = ['6S2OmqARrzebs0tKUEyXyp', '0C8ZW7ezQVs4URX5aX7Kqx']
+  const response = { items: [] }
+
+  nock(url).get('/artists')
+    .query({ ids: ids.toString() })
+    .reply(200, response)
+
+  client.getArtists(ids.toString(), (err, artists) => {
+    t.error(err, 'should not be an error')
     t.equals(typeof artists, 'object', 'should be a single element')
     t.ok(Array.isArray(artists.items), 'should be an Array of artists')
     t.end()

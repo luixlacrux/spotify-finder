@@ -49,3 +49,37 @@ test('should get several albums', (t) => {
     t.end()
   })
 })
+
+/**
+ * Using Callback's
+ */
+
+test('should get single an album and return a callback', (t) => {
+  const albumId = '6Kssm2LosQ0WyLukFZkEG5'
+  const response = { id: albumId, name: 'Demi' }
+
+  nock(url).get(`/albums/${albumId}`)
+    .reply(200, response)
+
+  client.getAlbum(albumId, { tracks: false }, (err, album) => {
+    t.error(err, 'should not be an error')
+    t.equals(typeof album, 'object', 'should be a object')
+    t.equals(album.id, albumId, 'should retrive a album id')
+    t.end()
+  })
+})
+
+test('should get several albums and return a callback', (t) => {
+  const ids = ['6Kssm2LosQ0WyLukFZkEG5', '56yYgfX6M5FlpETfyZSHkn']
+  const response = { albums: [] }
+
+  nock(url).get('/albums')
+    .query({ ids: ids.toString() })
+    .reply(200, response)
+
+  client.getAlbums(ids.toString(), (err, res) => {
+    t.error(err, 'should not be an error')
+    t.ok(Array.isArray(res.albums), 'should be an Array of albums')
+    t.end()
+  })
+})
