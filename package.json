@@ -2,7 +2,7 @@
   "name": "spotify-finder",
   "version": "1.0.0",
   "description": "A Spotify API Client",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "lint": "standard",
     "coverage": "istanbul cover tape -- test/test.js test/oauth-test.js test/*-test.js",
