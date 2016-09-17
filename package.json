@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "standard",
-    "coverage": "istanbul cover tape -- test/*-test.js",
+    "coverage": "istanbul cover tape -- test/test.js test/oauth-test.js test/*-test.js",
     "pretest": "rm -rf store",
     "test": "npm run lint && tape test/test.js test/oauth-test.js test/*-test.js | tap-spec",
     "posttest": "rm -rf store"
