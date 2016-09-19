@@ -20,6 +20,7 @@
   "author": "Luis Lacruz <luixlacrux18@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "coveralls": "^2.11.14",
     "istanbul": "^0.4.3",
     "nock": "^8.0.0",
     "standard": "^6.0.8",
