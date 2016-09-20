@@ -1,8 +1,7 @@
 # spotify-finder
 [![Build Status](https://travis-ci.org/luixlacrux/spotify-finder.svg?branch=es6)](https://travis-ci.org/luixlacrux/spotify-finder) [![Coverage Status](https://coveralls.io/repos/github/luixlacrux/spotify-finder/badge.svg?branch=es6)](https://coveralls.io/github/luixlacrux/spotify-finder?branch=es6)
 ---
-A isomorphic Spotify client.
-It allows to use some [Spotify Web API](https://developer.spotify.com/web-api/) endpoints
+A isomorphic Spotify client, that use the [Client Credentials](https://developer.spotify.com/web-api/authorization-guide/#client_credentials_flow) authorization flow. It allows to use some [Spotify Web API](https://developer.spotify.com/web-api/) endpoints.
 
 ## Install
 ```
@@ -20,7 +19,7 @@ const client = new Spotify({
 })
 ```
 Note: if you do not Provide the client credentials, some features that require authentication will not be available.
-To create an application in spotify. [click here](https://developer.spotify.com/my-applications/#!/)
+To create an application in Spotify. [click here](https://developer.spotify.com/my-applications/#!/)
 
 #### Search for all types
 ```js
