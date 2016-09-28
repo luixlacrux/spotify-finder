@@ -48,7 +48,7 @@ client.search(params)
 ```js
 const params = {
   to: 'new-releases', // required
-  limit: 10, // optional for default 20
+  limit: 5, // optional for default 20
   offset: 5 // optional for default 0
 }
 client.browse(params)
@@ -81,7 +81,7 @@ client.getCategory('toptrack')
 ```js
 const params = {
   playlists: true, // required
-  limit: 10, // optional for default 20
+  limit: 5, // optional for default 20
   offset: 5, // optional for default 0
   country: 'BR' // optional for default 'SE'
 }
@@ -127,7 +127,7 @@ client.getArtist('6S2OmqARrzebs0tKUEyXyp')
 const params = {
   albums: true, // required
   album_type: 'album,single', // optional for default all types
-  limit: 10, // optional for default 20
+  limit: 5, // optional for default 20
   offset: 5 // optional for default 0
 }
 client.getArtist('6S2OmqARrzebs0tKUEyXyp', params)
