@@ -46,7 +46,12 @@ client.search(params)
 
 #### Get a List of New Releases
 ```js
-client.browse({ to: 'new-releases' })
+const params = {
+  to: 'new-releases', // required
+  limit: 10, // optional for default 20
+  offset: 5 // optional for default 0
+}
+client.browse(params)
   .then(albums => {
     // do something with album's
   })
@@ -60,12 +65,31 @@ client.browse({ to: 'featured-playlists' })
 ```
 #### Get a List of Categories
 ```js
-client.browse({ to: 'categories' }
+client.browse({ to: 'categories' })
   .then(categories => {
     // do something with categories
   })
 ```
-
+#### Get a Category by id
+```js
+client.getCategory('toptrack')
+  .then(category => {
+    // do something with category
+  })
+```
+#### Get a Category’s Playlists
+```js
+const params = {
+  playlists: true, // required
+  limit: 10, // optional for default 20
+  offset: 5, // optional for default 0
+  country: 'BR' // optional for default 'SE'
+}
+client.getCategory('toptrack', params)
+  .then(playlists => {
+    // do something with playlists
+  })
+```
 #### Get album by id
 ```js
 client.getAlbum('41MnTivkwTO3UUJ8DrqEJJ', { tracks: false })
@@ -100,7 +124,13 @@ client.getArtist('6S2OmqARrzebs0tKUEyXyp')
 
 #### Get an artist's albums
 ```js
-client.getArtist('6S2OmqARrzebs0tKUEyXyp', { albums: true })
+const params = {
+  albums: true, // required
+  album_type: 'album,single', // optional for default all types
+  limit: 10, // optional for default 20
+  offset: 5 // optional for default 0
+}
+client.getArtist('6S2OmqARrzebs0tKUEyXyp', params)
   .then(albums => {
     // do something with albums
   })

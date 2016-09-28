@@ -25,7 +25,7 @@ test('should get an category', (t) => {
     .get(`/browse/categories/${catId}`)
     .reply(200, response)
 
-  client.getCategory(catId, { playlists: false }).then((category) => {
+  client.getCategory(catId).then((category) => {
     t.equals(typeof category, 'object', 'should be a object')
     t.equals(category.id, catId, 'should retrive a category id')
     t.end()
@@ -37,7 +37,7 @@ test('should get the playlists from a category', (t) => {
   const response = { playlists: [] }
 
   nock(config.url, { reqheaders: headers })
-    .get(`/browse/categories/${catId}/playlists`)
+    .get(`/browse/categories/${catId}/playlists?`)
     .reply(200, response)
 
   client.getCategory(catId, { playlists: true }).then((res) => {
@@ -56,7 +56,7 @@ test('should get an category and return a callback', (t) => {
   const response = { id: catId, name: 'toptracks' }
 
   nock(config.url, { reqheaders: headers })
-    .get(`/browse/categories/${catId}`)
+    .get(`/browse/categories/${catId}?`)
     .reply(200, response)
 
   client.getCategory(catId, { playlists: false }, (err, category) => {
