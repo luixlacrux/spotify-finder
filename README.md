@@ -13,8 +13,8 @@ $ npm install spotify-finder
 import Spotify from 'spotify-finder'
 const client = new Spotify({
   consumer: {
-    key: 'YOUR_CLIENT_ID', // from v2.2.0 is required
-    secret: 'YOUR_CLIENT_SECRET' // from v2.2.0 is required
+    key: 'YOUR_CLIENT_ID', // from v2.1.0 is required
+    secret: 'YOUR_CLIENT_SECRET' // from v2.1.0 is required
   }
 })
 ```
