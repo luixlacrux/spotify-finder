@@ -2,16 +2,13 @@
 
 const test = require('tape')
 const nock = require('nock')
-const Spotify = require('../lib/client')
-
-const url = 'https://api.spotify.test'
-const client = new Spotify({ url })
+const client = require('./client-config')
 
 test('should get an track', (t) => {
   const trackId = 'eGsygTp906u18L0Oimnem'
   const response = { id: trackId }
 
-  nock(url).get(`/tracks/${trackId}`)
+  nock(client.baseURL).get(`/tracks/${trackId}`)
     .reply(200, response)
 
   client.getTrack(trackId).then((track) => {
@@ -24,7 +21,7 @@ test('should get several tracks', (t) => {
   const ids = ['eGsygTp906u18L0Oimnem', 'dsadeTd465hfdg45hddsd']
   const response = { items: [] }
 
-  nock(url).get('/tracks')
+  nock(client.baseURL).get('/tracks')
     .query({ ids: ids.toString() })
     .reply(200, response)
 
@@ -42,7 +39,7 @@ test('should get an track and return a callback', (t) => {
   const trackId = 'eGsygTp906u18L0Oimnem'
   const response = { id: trackId }
 
-  nock(url).get(`/tracks/${trackId}`)
+  nock(client.baseURL).get(`/tracks/${trackId}`)
     .reply(200, response)
 
   client.getTrack(trackId, (err, track) => {
@@ -56,7 +53,7 @@ test('should get several tracks and return an callback', (t) => {
   const ids = ['eGsygTp906u18L0Oimnem', 'dsadeTd465hfdg45hddsd']
   const response = { items: [] }
 
-  nock(url).get('/tracks')
+  nock(client.baseURL).get('/tracks')
     .query({ ids: ids.toString() })
     .reply(200, response)
 

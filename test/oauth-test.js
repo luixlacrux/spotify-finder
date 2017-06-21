@@ -2,26 +2,14 @@
 
 const test = require('tape')
 const nock = require('nock')
-const Spotify = require('../lib/client')
+const client = require('./client-config.js')
+const headers = require('./client-config.js').headers
+const clientBad = require('./client-config.js').clientBad
 
-const config = {
-  auth: 'https://accounts.spotify.test/api/token',
-  consumer: {
-    key: 'NgA6ZcYIixn8bUQ',
-    secret: 'ixn8bUQNgA6ZcYI'
-  }
-}
-
-const encode = new Buffer(`${config.consumer.key}:${config.consumer.secret}`).toString('base64')
-const headers = { 'Authorization': `Basic ${encode}` }
 const response = { access_token: 'xxx-xxxx-xxx' }
 
-const client = new Spotify(config)
-
-const clientBad = new Spotify({ auth: 'https://accounts.spotify.test/api/token' })
-
 test('should return an access token', (t) => {
-  nock(config.auth, { reqheaders: headers })
+  nock(client.authURL, { reqheaders: headers })
     .post('')
     .reply(200, response)
 
@@ -32,7 +20,7 @@ test('should return an access token', (t) => {
 })
 
 test('should fail without client credentials', (t) => {
-  nock(config.auth, { reqheaders: headers })
+  nock(client.authURL, { reqheaders: headers })
     .post('/')
     .reply(200, response)
 
