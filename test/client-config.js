@@ -1,6 +1,7 @@
 const Spotify = require('../lib/client')
 
 const config = {
+  url: 'https://api.spotify.test',
   auth: 'https://accounts.spotify.test/api/token',
   consumer: {
     key: 'NgA6ZcYIixn8bUQ',

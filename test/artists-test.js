@@ -2,16 +2,13 @@
 
 const test = require('tape')
 const nock = require('nock')
-const Spotify = require('../lib/client')
-
-const url = 'https://api.spotify.test'
-const client = new Spotify({ url })
+const client = require('./client-config')
 
 test('should get single an artist', (t) => {
   const artistId = '6S2OmqARrzebs0tKUEyXyp'
   const response = { id: artistId, name: 'Demi Lovato' }
 
-  nock(url).get(`/artists/${artistId}`)
+  nock(client.baseURL).get(`/artists/${artistId}`)
     .query({ country: 'SE' })
     .reply(200, response)
 
@@ -27,7 +24,7 @@ test('should get an artist albums', (t) => {
   const opts = { country: 'SE', albums: true }
   const response = { items: [] }
 
-  nock(url).get(`/artists/${artistId}/albums`)
+  nock(client.baseURL).get(`/artists/${artistId}/albums`)
     .query({ country: 'SE' })
     .reply(200, response)
 
@@ -43,7 +40,7 @@ test('should get an artist top tracks', (t) => {
   const opts = { country: 'SE', topTracks: true }
   const response = { items: [] }
 
-  nock(url).get(`/artists/${artistId}/top-tracks`)
+  nock(client.baseURL).get(`/artists/${artistId}/top-tracks`)
     .query({ country: 'SE' })
     .reply(200, response)
 
@@ -59,7 +56,7 @@ test('should get related artists with an artist', (t) => {
   const opts = { country: 'SE', relatedArtists: true }
   const response = { items: [] }
 
-  nock(url).get(`/artists/${artistId}/related-artists`)
+  nock(client.baseURL).get(`/artists/${artistId}/related-artists`)
     .query({ country: 'SE' })
     .reply(200, response)
 
@@ -74,7 +71,7 @@ test('should get several artists', (t) => {
   const ids = ['6S2OmqARrzebs0tKUEyXyp', '0C8ZW7ezQVs4URX5aX7Kqx']
   const response = { items: [] }
 
-  nock(url).get('/artists')
+  nock(client.baseURL).get('/artists')
     .query({ ids: ids.toString() })
     .reply(200, response)
 
@@ -94,7 +91,7 @@ test('should get single an artist and return a callback', (t) => {
   const querys = { country: 'SE' }
   const response = { id: artistId, name: 'Demi Lovato' }
 
-  nock(url).get(`/artists/${artistId}`)
+  nock(client.baseURL).get(`/artists/${artistId}`)
     .query(querys)
     .reply(200, response)
 
@@ -110,7 +107,7 @@ test('should get several artists and return al callback', (t) => {
   const ids = ['6S2OmqARrzebs0tKUEyXyp', '0C8ZW7ezQVs4URX5aX7Kqx']
   const response = { items: [] }
 
-  nock(url).get('/artists')
+  nock(client.baseURL).get('/artists')
     .query({ ids: ids.toString() })
     .reply(200, response)
 

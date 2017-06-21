@@ -2,26 +2,13 @@
 
 const test = require('tape')
 const nock = require('nock')
-const Spotify = require('../lib/client')
-
-const config = {
-  url: 'https://api.spotify.test',
-  auth: 'https://accounts.spotify.test/api/token',
-  consumer: {
-    key: 'NgA6ZcYIixn8bUQ',
-    secret: 'ixn8bUQNgA6ZcYI'
-  }
-}
-
-const client = new Spotify(config)
-const token = 'xxx-xxxx-xxx'
-const headers = { 'Authorization': `Bearer ${token}` }
+const client = require('./client-config')
 
 test('should get an category', (t) => {
   const catId = 'toptracks'
   const response = { id: catId, name: 'toptracks' }
 
-  nock(config.url, { reqheaders: headers })
+  nock(client.baseURL)
     .get(`/browse/categories/${catId}`)
     .reply(200, response)
 
@@ -36,7 +23,7 @@ test('should get the playlists from a category', (t) => {
   const catId = 'toptracks'
   const response = { playlists: [] }
 
-  nock(config.url, { reqheaders: headers })
+  nock(client.baseURL)
     .get(`/browse/categories/${catId}/playlists?`)
     .reply(200, response)
 
@@ -55,7 +42,7 @@ test('should get an category and return a callback', (t) => {
   const catId = 'toptracks'
   const response = { id: catId, name: 'toptracks' }
 
-  nock(config.url, { reqheaders: headers })
+  nock(client.baseURL)
     .get(`/browse/categories/${catId}?`)
     .reply(200, response)
 

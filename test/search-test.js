@@ -2,10 +2,7 @@
 
 const test = require('tape')
 const nock = require('nock')
-const Spotify = require('../lib/client')
-
-const url = 'https://api.spotify.test'
-const client = new Spotify({ url })
+const client = require('./client-config.js')
 
 test('should search artist, album, track', (t) => {
   const querys = {
@@ -18,7 +15,7 @@ test('should search artist, album, track', (t) => {
 
   t.equals(typeof client.search, 'function', 'should be a function')
 
-  nock(url).get('/search')
+  nock(client.baseURL).get('/search')
     .query(querys)
     .reply(200, response)
 
@@ -40,7 +37,7 @@ test('should search only artists', (t) => {
 
   const response = { artists: [] }
 
-  nock(url).get('/search')
+  nock(client.baseURL).get('/search')
     .query(querys)
     .reply(200, response)
 
@@ -60,7 +57,7 @@ test('should do search and return a callback', (t) => {
 
   const response = { artists: [] }
 
-  nock(url).get('/search')
+  nock(client.baseURL).get('/search')
     .query(querys)
     .query({ type: 'artist,album,track' })
     .reply(200, response)
