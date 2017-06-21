@@ -1,6 +1,6 @@
 {
   "name": "spotify-finder",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "A isomorphic Spotify API client",
   "main": "lib/client.js",
   "scripts": {
