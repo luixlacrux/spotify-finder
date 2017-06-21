@@ -13,13 +13,12 @@ $ npm install spotify-finder
 import Spotify from 'spotify-finder'
 const client = new Spotify({
   consumer: {
-    key: 'YOUR_CLIENT_ID', // if your not have an app in spotify ignore this options
-    secret: 'YOUR_CLIENT_SECRET' // if your not have an app in spotify ignore this options
+    key: 'YOUR_CLIENT_ID', // from v2.2.0 is required
+    secret: 'YOUR_CLIENT_SECRET' // from v2.2.0 is required
   }
 })
 ```
-Note: if you do not Provide the client credentials, some features that require authentication will not be available.
-To create an application in Spotify. [click here](https://developer.spotify.com/my-applications/#!/)
+> Note: you have that provide the client credentials because from 29th May 2017 was removed unauthenticated calls to the Spotify Web API [more info](https://developer.spotify.com/news-stories/2017/01/27/removing-unauthenticated-calls-to-the-web-api/). Create an application in Spotify [click here](https://developer.spotify.com/my-applications/#!/).
 
 #### Search for all types
 ```js
