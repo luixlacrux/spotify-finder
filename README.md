@@ -1,5 +1,7 @@
 # spotify-finder
 [![Build Status](https://travis-ci.org/luixlacrux/spotify-finder.svg?branch=es6)](https://travis-ci.org/luixlacrux/spotify-finder) [![Coverage Status](https://coveralls.io/repos/github/luixlacrux/spotify-finder/badge.svg?branch=es6)](https://coveralls.io/github/luixlacrux/spotify-finder?branch=es6)
+
+[![NPM](https://nodei.co/npm/spotify-finder.png?downloads=true&stars=true)](https://nodei.co/npm/spotify-finder/)
 ---
 A isomorphic Spotify client, that use the [Client Credentials](https://developer.spotify.com/web-api/authorization-guide/#client_credentials_flow) authorization flow. It allows to use some [Spotify Web API](https://developer.spotify.com/web-api/) endpoints.
 
